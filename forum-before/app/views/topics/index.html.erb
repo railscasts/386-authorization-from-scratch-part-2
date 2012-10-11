@@ -1,0 +1,19 @@
+<h1>Forum</h1>
+
+<div id="topics">
+<% @topics.each do |topic| %>
+  <h2><%= link_to topic.name, topic %></h2>
+  <%= "Sticky |" if topic.sticky? %>
+  <%= pluralize topic.posts.size, "post" %>
+  <% if allow? "topics", "edit" %>
+    | <%= link_to "Edit", edit_topic_path(topic) %>
+  <% end %>
+  <% if allow? "topics", "destroy" %>
+    | <%= link_to "Destroy", topic_path(topic), method: :delete %>
+  <% end %>
+<% end %>
+</div>
+
+<% if allow? "topics", "new" %>
+  <p><%= link_to "New Topic", new_topic_path %></p>
+<% end %>

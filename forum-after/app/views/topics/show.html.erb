@@ -1,0 +1,9 @@
+<h1><%= @topic.name %></h1>
+
+<% @topic.posts.each do |post| %>
+  <div class="post">
+    <%= post.content %>
+  </div>
+<% end %>
+
+<p><%= link_to "Back to topics", topics_path %></p>
